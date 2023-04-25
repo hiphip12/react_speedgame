@@ -7,6 +7,7 @@ import Modal from './Modal';
 class App extends Component {
   state = {
     showModal: false,
+    gameRun: false,
     highlightedCircle: "",
     circles: [1, 2, 3, 4],
     // indexednumber: 0
@@ -39,7 +40,8 @@ class App extends Component {
     }
   }
 
-  highlighted = () {
+
+  highlighted = () => {
     circles.forEach(circle => circle.classList.remove('highlightedBtn'))
 
     const pickedCircle = circles[Math.floor(Math.random() * circles.length)]
@@ -57,6 +59,7 @@ class App extends Component {
   }
 
   clickHandler = () => {
+    // this.setState({ scorecount: this.state.scorecount + 1 });
 
 
   }
@@ -74,6 +77,41 @@ class App extends Component {
     }));
   }
 
+
+  gameRun = () => {
+    if (rounds >= 10) {
+      return stop()
+    }
+
+    highlighted()
+    circleTrack()
+    result()
+
+    RndTime = setTimeout(startGame, pace)
+    startButton.classList.add('offButton')
+    startButton.textContent = "Stop the game"
+    startButton.removeEventListener('click', startGame)
+    startButton.addEventListener('click', stop)
+
+    pace -= 50
+    rounds++
+
+  }
+
+  start = () => {
+    this.setState({
+      gameRun: !this.state.gameRun
+    });
+    // return (modalHandler)
+  }
+
+  stop = () => {
+    this.setState({
+      gameRun: !this.state.gameRun
+
+    });
+
+  }
 
 
   reset = () => {
@@ -98,12 +136,13 @@ class App extends Component {
 
           {/* {this.state.circles.map((circle, indexednumber) => <Circle key={circle}>{circle} {indexednumber}</Circle>)} */}
 
-
         </div>
 
+
+
         <div className='buttons_wrapper'>
-          <button name="start"> Start </button>
-          <button name="stop" onClick={this.modalHandler}> Stop </button>
+          <button name="start" onClick={this.start}> Start </button>
+          <button name="stop" onClick={this.modalHandler} > Stop </button>
           {this.state.showModal && <Modal reset={this.reset} />}
         </div>
       </div>
