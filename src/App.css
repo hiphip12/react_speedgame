@@ -1,0 +1,50 @@
+.gamepane {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  height: 150px;
+  width: 150px;
+  background-color: red;
+  border-radius: 100%;
+  margin: 1rem;
+}
+
+
+.circles_group {
+  display: flex;
+  justify-content: row;
+}
+
+button {
+  margin: 2rem;
+}
+
+.modal {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.554);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_box {
+  background-color: aliceblue;
+  height: 350px;
+  width: 350px;
+  padding: 1rem;
+}
+
+.modal_box li {
+  list-style: none;
+  margin: 1rem 0;
+}
