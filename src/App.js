@@ -1,145 +1,80 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+// import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
-import Circle from './Circle';
-import Modal from './Modal';
+import Circle from './Components/Circle';
+
+import GameOver from './Components/GameOver';
+
+const getRndInteger = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
 class App extends Component {
   state = {
-    showModal: false,
+    showGameOver: false,
     gameRun: false,
-    highlightedCircle: "",
+    highlightedCircle: 0,
     circles: [1, 2, 3, 4],
-    // indexednumber: 0
     scorecount: 0,
-    rounds: 0,
-    targetCircle: "",
-    lastCircle: "",
-    highlighted: false,
-    RndTime: ""
-  }
+    rounds: 1,
+    pace: 1000,
+  };
 
-  // circleTrack = () => {
-  //   this.state.circles.forEach((circle) => {
-  //     circle.addEventListener('click', clickCircle)
-  //   });
-  // circles.map((circle, indexednumber) => {
-
-  // })
-  // }
+  timer;
 
 
-  // clickCircle = (event) => {
-  //   const clickedCircle = event.target.closest('.circle')
-  //   if (clickedCircle.id !== targetCircle) {
-  //     reset()
-  //   }
-  // }
-
-
-  highlighted = () => {
-    this.state.circles.forEach(circle => circle.classList.remove('highlightedBtn'))
-
-    const pickedCircle = this.state.circles[Math.floor(Math.random() * this.state.circles.length)]
-    pickedCircle.classList.add('highlightedBtn')
-
-    this.setState({
-      targetCircle: pickedCircle.id
-    })
-
-    this.setState({
-      highlightedIndex: Array.from(this.state.circles).indexOf(pickedCircle)
-    })
-
-    const newCircle = pickedCircle
-    if (newCircle === this.state.lastCircle) {
-      return this.highlighted()
+  clickHandler = (i) => {
+    if (this.state.highlightedCircle !== i) {
+      return this.stop();
     }
 
     this.setState({
-      lastCircle: newCircle
-    })
-
-    return newCircle
-  }
-
-  clickHandler = () => {
-    this.setState({ scorecount: this.state.scorecount + 1 });
-  }
-
-  // shownCircle = () => {
-  //   this.setState(({ circles }) => ({
-  //     circles: [
-  //       ...circles.slice(0, 1),
-  //       {
-  //         ...circles[1],
-  //         prickedCircle: 'random..'
-  //       },
-  //       ...circles.slice(2)
-  //     ]
-  //   }));
-  // }
-
-
-  gameRun = () => {
-    // if (this.state.rounds >= 10) {
-    //   return this.stop()
-    // }
-
-    this.setState({
-      highlighted: true
+      scorecount: this.state.scorecount + 10
     });
+  };
 
+  highlighted = () => {
 
-    // circleTrack()
-    // result()
+    let targetCircle;
+
+    do {
+      targetCircle = getRndInteger(1, this.state.circles.length);
+    } while (targetCircle === this.state.highlightedCircle)
 
     this.setState({
-      RndTime: setTimeout(this.gameRun, this.state.pace)
+      highlightedCircle: targetCircle,
+      pace: this.state.pace,
+      rounds: this.state.rounds + 1
     })
 
-    // startButton.classList.add('offButton')
-    // startButton.textContent = "Stop the game"
-    // startButton.removeEventListener('click', startGame)
-    // startButton.addEventListener('click', stop)
+    this.timer = setTimeout(this.highlighted, this.state.pace)
 
-    this.setState(
-      {
-        pace: -50,
-        rounds: +1
-      }
-    )
-
+    if (this.state.rounds > 5) {
+      return this.stop();
+    }
 
   }
 
-
-  modalHandler = (e) => {
-    e.preventDefault()
-    this.setState({
-      showModal: !this.state.showModal
-    })
-  };
 
   start = () => {
     this.setState({
-      gameRun: true
-    });
+      gameRun: !this.state.gameRun
+    })
+    this.highlighted();
   }
 
   stop = () => {
+    clearTimeout(this.timer)
     this.setState({
-      gameRun: !this.state.gameRun, showModal: !this.state.showModal
+      showGameOver: !this.state.showGameOver
     });
 
   }
 
-
   reset = () => {
     // this.setState({
-    //   showModal: !this.state.showModal
+    //   gameRun: false
     // })
-
     window.location.reload(false);
   }
 
@@ -152,20 +87,21 @@ class App extends Component {
 
         <h3>Your Score is: <span>{this.state.scorecount}</span></h3>
         <div className='circles_group'>
-          {this.state.circles.map((circle, indexednumber) => (<Circle
-            key={circle} indexednumber={this.state.circles}> {circle.indexednumber} {indexednumber} <span></span></Circle>))}
-
-          {/* {this.state.circles.map((circle, indexednumber) => <Circle key={circle}>{circle} {indexednumber}</Circle>)} */}
+          {this.state.circles.map(circle => <Circle
+            key={circle}
+            selected={() => this.clickHandler(circle)}
+            active={this.state.highlightedCircle === circle}
+          />)}
 
         </div>
 
 
+        {this.state.showGameOver && (<GameOver reset={this.reset}
+          scorecount={this.state.scorecount} />)}
 
         <div className='buttons_wrapper'>
-          <button name="start" onClick={this.start}> Start </button>
-          <button name="stop" onClick={this.stop} > Stop </button>
-          {this.state.showModal && <Modal reset={this.reset}
-            scorecount={this.state.scorecount} />}
+          {this.state.gameRun ? (<button name="stop" onClick={this.stop} > Stop </button>
+          ) : (<button name="start" onClick={this.start}> Start </button>)}
         </div>
       </div>
 
@@ -174,18 +110,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header>
-//         Speedgame
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;

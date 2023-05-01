@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = (props) => {
+const GameOver = (props) => {
     return (
         <div className='modal'>
             <div className='modal_box'>
@@ -12,4 +12,4 @@ const Modal = (props) => {
     );
 }
 
-export default Modal;
+export default GameOver;

@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+body {
+  background-image: linear-gradient(to right, rgb(109, 109, 147), rgb(236, 245, 151));
+  font-family: 'Orbitron', sans-serif;
+}
+
 .gamepane {
   display: flex;
   flex-direction: column;
@@ -8,7 +15,7 @@
 .circle {
   height: 150px;
   width: 150px;
-  background-color: red;
+  /* background-color: red; */
   border-radius: 100%;
   margin: 1rem;
 }
@@ -21,6 +28,7 @@
 
 button {
   margin: 2rem;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .modal {
@@ -49,6 +57,28 @@ button {
   margin: 1rem 0;
 }
 
-.highlightedBtn {
+/* .highlightedBtn {
   background-color: blue;
+} */
+
+.circle:first-child {
+  background-color: red;
+}
+
+.circle:nth-child(2) {
+  background-color: brown;
+}
+
+.circle:nth-child(3) {
+  background-color: rgb(100, 26, 26);
+}
+
+.circle:last-child {
+  background-color: rgb(54, 14, 14);
+}
+
+.circle.active {
+  background-color: rgb(255, 208, 0);
+  /* border: 2px solid black; */
+  box-shadow: inset 0 0 10px black;
 }
