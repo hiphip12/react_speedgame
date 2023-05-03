@@ -82,7 +82,7 @@ class App extends Component {
     return (
       <div className='gamepane'>
         <h1>
-          React Speedgame
+          SPEEDGAME 2.0
         </h1>
 
         <h3>Your Score is: <span>{this.state.scorecount}</span></h3>
@@ -90,7 +90,8 @@ class App extends Component {
           {this.state.circles.map(circle => <Circle
             key={circle}
             selected={() => this.clickHandler(circle)}
-            active={this.state.highlightedCircle === circle}
+            current={this.state.highlightedCircle === circle}
+            active={this.state.gameRun}
           />)}
 
         </div>

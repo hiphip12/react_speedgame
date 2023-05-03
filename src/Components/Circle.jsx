@@ -4,8 +4,9 @@ const Circle = (props) => {
     return (
 
         <div
-            className={props.active ? 'circle active' : 'circle'}
-            onClick={props.selected} >
+            className={props.current ? 'circle active' : 'circle'}
+            onClick={props.selected}
+            style={{ pointerEvents: props.active ? 'all' : 'none' }}>
         </div>
 
     )
