@@ -5,8 +5,9 @@ const GameOver = (props) => {
         <div className='modal'>
             <div className='modal_box'>
                 <h2> Game Over</h2>
-                <p>your score is: <span >{props.scorecount}</span></p>
-                <button name='close' onClick={props.reset}> Close</button>
+                <p>Your score is: <span >{props.scorecount}</span></p>
+                <p> <span>{props.gameOverText}</span></p>
+                <button className='close' onClick={props.reset}> Close</button>
             </div>
         </div>
     );
