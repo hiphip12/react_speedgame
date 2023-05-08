@@ -176,3 +176,11 @@ button:active {
 .musicPlayer button:active {
   background-color: rgb(60, 23, 23);
 }
+
+@media (max-width: 768px) {
+  .musicPlayer {
+    top: auto;
+    bottom: 0;
+    position: absolute;
+  }
+}
