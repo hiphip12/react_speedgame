@@ -137,7 +137,7 @@ class App extends Component {
           }
         </div>
 
-        <h1>SPEEDGAME 2.0 </h1>
+        <h1>REACT SPEEDGAME</h1>
         <h2>Catch the goofy face!</h2>
         <h3>Your Score is: <span>{this.state.scorecount}</span></h3>
         <div className='circles_group'>
