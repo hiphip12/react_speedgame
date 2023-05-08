@@ -3,6 +3,15 @@ IMAGE:
 Photo by  Nick Fewings // https://unsplash.com/@jannerboy62
 At Unsplash https://unsplash.com/photos/fIEywSUhwFU
 
+######################
+FAVICON:
+
+Smileys & Emoticon No 27
+Code: U+1F61C
+CLDR Short Name: zany face
+URL: https://unicode.org/emoji/charts/emoji-list.html#1f92a
+Copyright: https://www.unicode.org/copyright.html
+
 
 ######################
 SOUNDS:

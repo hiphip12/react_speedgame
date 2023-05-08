@@ -1,7 +1,7 @@
 # Speedgame Made in React
 ## General Information
 
-This is a school project where a simple clicking game was built with React tools using only Class and Function Components. This is the second version of the same project, since the [first one](https://github.com/hiphip12/speedgame) was made with vanilla JavaScript at the inital stages of the webdev course. As a beginner, both projects were equally challenging.
+This is a simple clicking game built with React tools, using only Class and Function Components (no Hooks). This is the second version of the same project, the [first one](https://github.com/hiphip12/speedgame) was made with vanilla JavaScript. Both os these project were part of a school assignment, and -as a beginner-, both projects were equally challenging.
 
 ## Technologies
 - React
@@ -17,7 +17,7 @@ This is a school project where a simple clicking game was built with React tools
 
 ## Screenshot
 
-![alt text](assets/images/screenshot_react_speedgame.png)
+![alt text](src/assets/images/screenshot_react_speedgame.png)
 
 
 ## Live Page

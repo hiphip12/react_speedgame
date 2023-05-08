@@ -25,11 +25,12 @@ class App extends Component {
     startBeep: new Audio(start),
     clickedBeep: new Audio(spot),
     endBeep: new Audio(end),
-    playing: false,
+    musicPlaying: false,
   };
 
   timer;
 
+  // click handler to match clicks with highlighted and not highlighted circles
   clickHandler = (i) => {
     if (this.state.highlightedCircle === i) {
       if (!this.state.isClicked) {
@@ -44,7 +45,7 @@ class App extends Component {
     }
   };
 
-
+  // randomizing the highlighted circle
   highlighted = () => {
 
     let targetCircle;
@@ -71,7 +72,7 @@ class App extends Component {
 
   }
 
-
+  // start handler, triggered by start button and to enable the highlighted circle to start showing (starting the game)
   start = () => {
     this.state.startBeep.play();
     this.setState({
@@ -80,6 +81,7 @@ class App extends Component {
     this.highlighted();
   }
 
+  // stop handler, tiggered by the stop button and ending the game display
   stop = () => {
     this.state.endBeep.play();
     clearTimeout(this.timer)
@@ -89,6 +91,7 @@ class App extends Component {
     this.feedback(this.state.scorecount);
   }
 
+  // enabling reset by getting the game funtionality back to default
   reset = () => {
     this.setState({
       gameRun: !this.state.gameRun,
@@ -100,6 +103,7 @@ class App extends Component {
     })
   }
 
+  // conditional game over messaging depending on how good is the score
   feedback = () => {
     if (this.state.scorecount <= 20) {
       this.setState({
@@ -118,22 +122,23 @@ class App extends Component {
     }
   }
 
-  togglePlaying = () => {
-    const { playing } = this.state;
-    this.setState({ playing: !playing });
+  // capability to enable and disabling background music
+  toggleMusicPlaying = () => {
+    const { musicPlaying } = this.state;
+    this.setState({ musicPlaying: !musicPlaying });
   };
 
   render() {
 
-    const { playing } = this.state;
+    const { musicPlaying } = this.state;
     return (
 
       <div className='gamepane'>
         <div className='musicPlayer'>
-          <button onClick={this.togglePlaying}>
-            {playing ? '♪ 🔇' : '♪ 🔈'}
+          <button onClick={this.toggleMusicPlaying}>
+            {musicPlaying ? '♪ 🔇' : '♪ 🔈'}
           </button>
-          {this.state.playing && <audio src={song} autoPlay loop />
+          {this.state.musicPlaying && <audio src={song} autoPlay loop />
           }
         </div>
 
