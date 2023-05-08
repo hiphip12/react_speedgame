@@ -135,7 +135,7 @@ button:active {
 
 .circle.active::before {
   content: "🤪";
-  font-size: 18vh;
+  font-size: 18vw;
 }
 
 .close {
