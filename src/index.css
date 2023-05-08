@@ -28,9 +28,10 @@ h1 {
   align-items: center;
 }
 
+/* using same viewpoint for circle responsiveness */
 .circle {
-  height: 150px;
-  width: 150px;
+  height: 18vh;
+  width: 18vh;
   border-radius: 100%;
   margin: 1rem;
   box-shadow: 0 0 5px rgb(186, 96, 86);
@@ -132,7 +133,7 @@ button:active {
 
 .circle.active::before {
   content: "🤪";
-  font-size: 9.5rem;
+  font-size: 18vh;
 }
 
 .close {
@@ -173,5 +174,3 @@ button:active {
 .musicPlayer button:active {
   background-color: rgb(60, 23, 23);
 }
-
-@media (max-width: 768px) {}
