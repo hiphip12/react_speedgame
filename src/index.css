@@ -30,8 +30,8 @@ h1 {
 
 /* using same viewpoint for circle responsiveness */
 .circle {
-  height: 18vw;
-  width: 18vw;
+  height: 15vw;
+  width: 15vw;
   border-radius: 100%;
   margin: 1rem;
   box-shadow: 0 0 5px rgb(186, 96, 86);
@@ -135,7 +135,7 @@ button:active {
 
 .circle.active::before {
   content: "🤪";
-  font-size: 18vw;
+  font-size: 15vw;
 }
 
 .close {
@@ -180,7 +180,7 @@ button:active {
 @media (max-width: 768px) {
   .musicPlayer {
     top: auto;
-    bottom: 0;
-    position: absolute;
+    bottom: 1rem;
+    position: fixed;
   }
 }
