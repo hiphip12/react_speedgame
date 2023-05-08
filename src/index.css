@@ -1,13 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to right, rgba(151, 236, 245, 0.868), rgba(190, 190, 237, 0.853)), url(./assets/images/nick-fewings-fIEywSUhwFU-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-weight: bold;
+  text-shadow: 0 0 3px rgb(186, 96, 86);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  font-size: 38px;
+}
+
+.gamepane {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+  margin: 1rem;
+  box-shadow: 0 0 5px rgb(186, 96, 86);
+}
+
+
+.circles_group {
+  display: flex;
+  justify-content: row;
+}
+
+button {
+  margin: 2rem;
+  font-family: 'Gloria Hallelujah', cursive;
+  height: 30px;
+  width: 100px;
+  border-radius: 5px;
+  border: none;
+  background-color: aliceblue;
+  box-shadow: 2px 2px 2px rgb(75, 29, 24);
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: rgb(250, 225, 215);
+}
+
+button:active {
+  background-color: rgb(255, 205, 189);
+  box-shadow: none;
+}
+
+.modal {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.602);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_box {
+  background-color: aliceblue;
+  height: 360px;
+  width: 360px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 0 5px rgb(186, 96, 86);
+
+}
+
+.modal_box li {
+  list-style: none;
+  margin: 1rem 0;
+}
+
+.modal_box div span {
+  font-size: 40px;
+}
+
+/* .highlightedBtn {
+  background-color: blue;
+} */
+
+.circle:first-child {
+  background-color: red;
+}
+
+.circle:nth-child(2) {
+  background-color: brown;
+}
+
+.circle:nth-child(3) {
+  background-color: rgb(100, 26, 26);
+}
+
+.circle:last-child {
+  background-color: rgb(54, 14, 14);
+}
+
+.circle.active {
+  background-color: transparent;
+  text-shadow: 0 0 10px black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+}
+
+.circle.active::before {
+  content: "🤪";
+  font-size: 9.5rem;
+}
+
+.close {
+  background-color: rgb(190, 225, 236);
+}
+
+.close:hover {
+  background-color: rgb(107, 167, 216);
+}
+
+.close:active {
+  background-color: rgb(93, 159, 214);
+}
+
+.musicPlayer {
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+
+.musicPlayer button {
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  width: 50px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 2px rgb(75, 29, 24);
+}
+
+.musicPlayer button:hover {
+  background-color: rgb(44, 21, 21);
+}
+
+.musicPlayer button:active {
+  background-color: rgb(60, 23, 23);
 }

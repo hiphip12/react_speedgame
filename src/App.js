@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-// import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import './App.css';
 import Circle from './Components/Circle';
 
 import GameOver from './Components/GameOver';
-import song from './carnivalrides.ogg';
+import song from './assets/sounds/carnivalrides.ogg';
+import start from './assets/sounds/beep.wav';
+import spot from './assets/sounds/interface4.wav';
+import end from './assets/sounds/retro_sound_1_0.wav';
 
 const getRndInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-// let audio = new Audio(song);
 
 class App extends Component {
   state = {
@@ -22,27 +22,28 @@ class App extends Component {
     rounds: 0,
     pace: 1000,
     gameOverText: "",
-    audio: new Audio(song),
-    isPlaying: false
+    startBeep: new Audio(start),
+    clickedBeep: new Audio(spot),
+    endBeep: new Audio(end),
+    playing: false,
   };
 
   timer;
-  // isPlaying = false;
-
-  // componentDidMount() {
-  //   this.state.audio.play();
-  //   this.setState({ isPlaying: true });
-  // }
 
   clickHandler = (i) => {
-    if (this.state.highlightedCircle !== i) {
-      return this.stop();
+    if (this.state.highlightedCircle === i) {
+      if (!this.state.isClicked) {
+        this.setState({
+          scorecount: this.state.scorecount + 10,
+          isClicked: true
+        });
+        this.state.clickedBeep.play();
+      }
+    } else {
+      this.stop();
     }
-
-    this.setState({
-      scorecount: this.state.scorecount + 10
-    });
   };
+
 
   highlighted = () => {
 
@@ -55,20 +56,24 @@ class App extends Component {
     this.setState({
       highlightedCircle: targetCircle,
       pace: this.state.pace * 0.95,
-      rounds: this.state.rounds + 1
+      rounds: this.state.rounds + 1,
+      isClicked: false
     })
 
     this.timer = setTimeout(this.highlighted, this.state.pace)
 
     if (this.state.rounds >= 5) {
-      return this.stop();
+      return (
+        this.stop(),
+        this.state.endBeep.play()
+      );
     }
 
   }
 
 
   start = () => {
-    // this.state.startSound.play();
+    this.state.startBeep.play();
     this.setState({
       gameRun: !this.state.gameRun
     });
@@ -76,6 +81,7 @@ class App extends Component {
   }
 
   stop = () => {
+    this.state.endBeep.play();
     clearTimeout(this.timer)
     this.setState({
       showGameOver: !this.state.showGameOver
@@ -84,61 +90,55 @@ class App extends Component {
   }
 
   reset = () => {
-    // this.setState({
-    //   gameRun: false
-    // })
-    window.location.reload(false);
+    this.setState({
+      gameRun: !this.state.gameRun,
+      showGameOver: !this.state.showGameOver,
+      scorecount: 0,
+      highlightedCircle: 0,
+      pace: 1000,
+      rounds: 0,
+    })
   }
 
   feedback = () => {
-    if (this.state.scorecount < 20) {
+    if (this.state.scorecount <= 20) {
       this.setState({
-        gameOverText: 'Your score is low, better luck next time!'
+        gameOverText: <div><span>😅</span><br /><p>That's low, better luck next time!</p></div>
       })
     }
-    else if (this.state.scorecount < 40) {
+    else if (this.state.scorecount <= 40) {
       this.setState({
-        gameOverText: 'Not so bad, you can still improve!'
+        gameOverText: <div><span>🤔</span><br /><p>Not so bad, you can still improve!</p></div>
       })
     }
     else {
       this.setState({
-        gameOverText: 'Excellent! You did great!'
+        gameOverText: <div><span>😄</span><br /><p>Excellent! You did great!</p></div>
       })
     }
   }
 
-  playPause = () => {
-
-    // Get state of song
-    let isPlaying = this.state.isPlaying;
-
-    if (isPlaying) {
-      // Pause the song if it is playing
-      this.state.audio.pause();
-    } else {
-
-      // Play the song if it is paused
-      this.state.audio.play();
-    }
-
-    // Change the state of song
-    this.setState({ isPlaying: !isPlaying });
+  togglePlaying = () => {
+    const { playing } = this.state;
+    this.setState({ playing: !playing });
   };
 
   render() {
-    return (
-      <div className='gamepane'>
-        <div className='musicPlayer_wrapper'>
-          <div className='musicPlayer'>
-            {this.state.isPlaying ? (<button name="pause" onClick={this.playPause} > Pause Music </button>
-            ) : (<button name="play" onClick={this.playPause}> Play Music</button>)}
-          </div>
-        </div>
-        <h1>
-          SPEEDGAME 2.0
-        </h1>
 
+    const { playing } = this.state;
+    return (
+
+      <div className='gamepane'>
+        <div className='musicPlayer'>
+          <button onClick={this.togglePlaying}>
+            {playing ? '♪ 🔇' : '♪ 🔈'}
+          </button>
+          {this.state.playing && <audio src={song} autoPlay loop />
+          }
+        </div>
+
+        <h1>SPEEDGAME 2.0 </h1>
+        <h2>Catch the goofy face!</h2>
         <h3>Your Score is: <span>{this.state.scorecount}</span></h3>
         <div className='circles_group'>
           {this.state.circles.map(circle => <Circle
@@ -149,8 +149,6 @@ class App extends Component {
           />)}
 
         </div>
-
-
         {this.state.showGameOver && (<GameOver reset={this.reset}
           scorecount={this.state.scorecount} gameOverText={this.state.gameOverText} />)}
 
@@ -158,9 +156,6 @@ class App extends Component {
           {this.state.gameRun ? (<button name="stop" onClick={this.stop} > Stop </button>
           ) : (<button name="start" onClick={this.start}> Start </button>)}
         </div>
-        {/* <audio src="./carnivalrides.ogg" autoPlay loop /> */}
-
-
       </div>
 
     );

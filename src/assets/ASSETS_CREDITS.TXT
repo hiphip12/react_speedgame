@@ -1,0 +1,75 @@
+IMAGE:
+
+Photo by  Nick Fewings // https://unsplash.com/@jannerboy62
+At Unsplash https://unsplash.com/photos/fIEywSUhwFU
+
+
+######################
+SOUNDS:
+
+Title:
+    RPG Sound Pack
+
+Author:
+    artisticdude
+
+URL:
+    https://opengameart.org/content/rpg-sound-pack
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+File(s):
+    * rpg_sound_pack.zip
+    * interface4.wav
+
+----------------------------------------
+
+Title:
+    Retro Sounds
+
+Author:
+    artisticdude
+
+URL:
+    https://opengameart.org/content/retro-sounds-0
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+File(s):
+    * retro_sound_1_0.wav
+
+----------------------------------------
+
+Title:
+    Beep Tone Sound SFX
+
+Author:
+    qubodup
+
+URL:
+    https://opengameart.org/content/beep-tone-sound-sfx
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+File(s):
+    * beep.wav
+
+----------------------------------------
+
+Title:
+    Carnival Rides
+
+Author:
+    Écrivain
+
+URL:
+    https://opengameart.org/content/carnival-rides
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+File(s):
+    * carnivalrides.ogg
