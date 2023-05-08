@@ -30,8 +30,8 @@ h1 {
 
 /* using same viewpoint for circle responsiveness */
 .circle {
-  height: 18vh;
-  width: 18vh;
+  height: 18vw;
+  width: 18vw;
   border-radius: 100%;
   margin: 1rem;
   box-shadow: 0 0 5px rgb(186, 96, 86);
@@ -40,7 +40,9 @@ h1 {
 
 .circles_group {
   display: flex;
-  justify-content: row;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 button {
